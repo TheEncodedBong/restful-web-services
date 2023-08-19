@@ -1,8 +1,16 @@
 package com.teb.practice.restfulwebservices.bean;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@ToString
 public class Book {
 
 	private String bookId;
@@ -14,42 +22,5 @@ public class Book {
 	@NotNull
 	@Size(min = 10, max = 20, message = "Author name should be between 10 to 20 characters.")
 	private String bookAuthor;
-
-	/* For early versions of Spring-boot, add a manual no-argument constructor */
-	public Book(String bookId, String bookName, String bookAuthor) {
-		super();
-		this.bookId = bookId;
-		this.bookName = bookName;
-		this.bookAuthor = bookAuthor;
-	}
-
-	public String getBookId() {
-		return bookId;
-	}
-
-	public void setBookId(String bookId) {
-		this.bookId = bookId;
-	}
-
-	public String getBookName() {
-		return bookName;
-	}
-
-	public void setBookName(String bookName) {
-		this.bookName = bookName;
-	}
-
-	public String getBookAuthor() {
-		return bookAuthor;
-	}
-
-	public void setBookAuthor(String bookAuthor) {
-		this.bookAuthor = bookAuthor;
-	}
-
-	@Override
-	public String toString() {
-		return "Book [bookId=" + bookId + ", bookName=" + bookName + ", bookAuthor=" + bookAuthor + "]";
-	}
 
 }

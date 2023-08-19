@@ -23,6 +23,6 @@ public class SwaggerConfiguration {
 	/* Swagger documentation to layout details of the application in JSON format */
 	@Bean
 	public Docket api() {
-		return new Docket(DocumentationType.SWAGGER_2).apiInfo(DEFAULT_API_INFO); // personalized API info
+		return new Docket(DocumentationType.SWAGGER_2).apiInfo(DEFAULT_API_INFO); // personalised API info
 	}
 }

@@ -1,8 +1,10 @@
 package com.teb.practice.restfulwebservices.controller;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 import java.net.URI;
 import java.util.List;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -19,15 +21,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
-
 import com.teb.practice.restfulwebservices.bean.Book;
 import com.teb.practice.restfulwebservices.exception.BookNotFoundException;
 import com.teb.practice.restfulwebservices.service.BookService;
 
+import jakarta.validation.Valid;
+
 @RestController
 public class BookController {
+
+	private static final String BOOK_ID = "Book ID: ";
 
 	@Autowired
 	BookService bookService;
@@ -49,7 +52,7 @@ public class BookController {
 	public EntityModel<Book> getBookById(@PathVariable String bookId) {
 		Book bookToLookup = bookService.listBookById(bookId);
 		if (bookToLookup == null) {
-			throw new BookNotFoundException("Book ID: ".concat(bookId.toUpperCase()));
+			throw new BookNotFoundException(BOOK_ID.concat(bookId.toUpperCase()));
 		}
 
 		/*
@@ -81,7 +84,7 @@ public class BookController {
 	public Book updateOldBook(@PathVariable String bookId, @RequestBody Book book) {
 		Book bookToUpdate = bookService.updateBook(bookId, book);
 		if (bookToUpdate == null) {
-			throw new BookNotFoundException("Book ID: ".concat(bookId.toUpperCase()));
+			throw new BookNotFoundException(BOOK_ID.concat(bookId.toUpperCase()));
 		}
 		return bookToUpdate;
 	}
@@ -90,7 +93,7 @@ public class BookController {
 	public Book deleteOldBook(@PathVariable String bookId) {
 		Book bookToDelete = bookService.removeBook(bookId);
 		if (bookToDelete == null) {
-			throw new BookNotFoundException("Book ID: ".concat(bookId.toUpperCase()));
+			throw new BookNotFoundException(BOOK_ID.concat(bookId.toUpperCase()));
 		}
 		return bookToDelete;
 	}

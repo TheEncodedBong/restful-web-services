@@ -8,7 +8,7 @@ public class ExceptionResponse {
 	private String exceptionMessage;
 	private String exceptionDetails;
 
-	/* The exception message format is customized to include specified attributes */
+	/* The exception message format is customised to include specified attributes */
 	public ExceptionResponse(Date timeStamp, String exceptionMessage, String exceptionDetails) {
 		super();
 		this.timeStamp = timeStamp;
